@@ -192,7 +192,6 @@ class Bank
     regex = /\[([A-Za-z]*)\] \w*: ([A-Za-z]*\s[A-Za-z]*) -- \w*: \$(\d*\.\d*)/
     file.each do |line|
       type, holder, balance = line.match(regex).captures
-      puts type, holder, balance
       bank.add_account(type, holder, balance)
     end
     bank
