@@ -1,5 +1,6 @@
 require 'date'
 
+# A nomal Bank Account
 class BankAccount
   attr_reader :balance, :holder
 
@@ -24,7 +25,7 @@ class BankAccount
   end
 end
 
-
+# Checking Accounts differ by charging you a $5 fee every 15 transactions
 class CheckingAccount < BankAccount
   FREE_TRANSACTIONS = 15
   TRANSACTION_FEE = 5.0
@@ -34,6 +35,8 @@ class CheckingAccount < BankAccount
   end
 
   def deduct_fees
+    # reset the transaction count at the begining of each month
+    @transaction_count = 1 if Date.today.mday == 1
     if @transaction_count > FREE_TRANSACTIONS
       @balance = @balance - TRANSACTION_FEE
     end
@@ -56,7 +59,7 @@ class CheckingAccount < BankAccount
   end
 end
 
-
+# A savings account adds interest to your account at the end of each year
 class SavingsAccount < BankAccount
   attr_reader :interest_rate
 
@@ -86,7 +89,7 @@ class SavingsAccount < BankAccount
   end
 end
 
-
+# A Bank holds bank accounts
 class Bank
   attr_reader :name
   def initialize(bank_name)
