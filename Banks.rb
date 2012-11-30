@@ -171,12 +171,8 @@ class Bank
     puts "Account not found."
   end
 
-  def get_account_by_id(the_id)
-    @accounts.each do |id, account|
-      if the_id == id
-        return account
-      end
-    end
+  def get_account_by_id(id)
+    @accounts[id] or puts "Account not found."
   end
 
   def save_bank_info_to_file(file_name)
