@@ -1,4 +1,5 @@
 require 'date'
+require 'bigdecimal'
 
 # A nomal Bank Account
 class BankAccount
@@ -6,7 +7,7 @@ class BankAccount
 
   def initialize(the_holder, inital_balance)
     @transaction_count = 0
-    @balance = inital_balance.to_f
+    @balance = BigDecimal.new(inital_balance)
     @holder = the_holder
   end
 
@@ -28,7 +29,7 @@ end
 # Checking Accounts differ by charging you a $5 fee every 15 transactions
 class CheckingAccount < BankAccount
   FREE_TRANSACTIONS = 15
-  TRANSACTION_FEE = 5.0
+  TRANSACTION_FEE = BigDecimal.new("5")
 
   def initialize(holder, inital_balance)
     super(holder, inital_balance)
@@ -62,12 +63,12 @@ end
 
 # A savings account adds interest to your account at the end of each year
 class SavingsAccount < BankAccount
-  attr_reader :interest_rate, :interest_added?
+  attr_reader :interest_rate, :interest_added
 
   def initialize(holder, inital_balance)
     super(holder, inital_balance)
-    @interest_rate  = 0.6
-    @interest_added? = false
+    @interest_rate  = BigDecimal.new("0.6")
+    @interest_added = false
   end
 
   def withdraw(amount)
@@ -84,7 +85,7 @@ class SavingsAccount < BankAccount
 
   def add_interest
     @balance = @balance + (@balance * @interest_rate)
-    @interest_added? = true
+    @interest_added = true
   end
 
   def to_s
