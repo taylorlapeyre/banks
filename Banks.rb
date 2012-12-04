@@ -39,6 +39,7 @@ class CheckingAccount < BankAccount
     @transaction_count = 1 if Date.today.mday == 1
     if @transaction_count > FREE_TRANSACTIONS
       @balance = @balance - TRANSACTION_FEE
+      @transation_count = 0
     end
   end
 
