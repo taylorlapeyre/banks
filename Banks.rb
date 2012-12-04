@@ -62,11 +62,12 @@ end
 
 # A savings account adds interest to your account at the end of each year
 class SavingsAccount < BankAccount
-  attr_reader :interest_rate
+  attr_reader :interest_rate, :interest_added?
 
   def initialize(holder, inital_balance)
     super(holder, inital_balance)
-    @interest_rate = 0.6
+    @interest_rate  = 0.6
+    @interest_added = false
   end
 
   def withdraw(amount)
@@ -83,6 +84,7 @@ class SavingsAccount < BankAccount
 
   def add_interest
     @balance = @balance + (@balance * @interest_rate)
+    @interest_added? = true
   end
 
   def to_s
