@@ -67,7 +67,7 @@ class SavingsAccount < BankAccount
   def initialize(holder, inital_balance)
     super(holder, inital_balance)
     @interest_rate  = 0.6
-    @interest_added = false
+    @interest_added? = false
   end
 
   def withdraw(amount)
