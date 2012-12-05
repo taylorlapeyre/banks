@@ -12,12 +12,12 @@ class BankAccount
   end
 
   def deposit(amount)
-    @transaction_count++
+    @transaction_count = @transaction_count + 1
     @balance  = @balance + amount
   end
 
   def withdraw(amount)
-    @transaction_count++
+    @transaction_count = @transaction_count + 1
     @balance = @balance - amount
   end
 
@@ -45,13 +45,13 @@ class CheckingAccount < BankAccount
   end
 
   def withdraw(amount)
-    @transaction_count++
+    @transaction_count = @transaction_count + 1
     @balance = @balance - amount
     deduct_fees
   end
 
   def deposit(amount)
-    @transaction_count++
+    @transaction_count = @transaction_count + 1
     @balance  = @balance + amount
     deduct_fees
   end
@@ -72,13 +72,13 @@ class SavingsAccount < BankAccount
   end
 
   def withdraw(amount)
-    @transaction_count++
+    @transaction_count = @transaction_count + 1
     @balance = @balance - amount
     add_interest if Date.today.to_s == "#{Date.today.year}-12-31"
   end
 
   def deposit(amount)
-    @transaction_count++
+    @transaction_count = @transaction_count + 1
     @balance  = @balance + amount
     add_interest if Date.today.to_s == "#{Date.today.year}-12-31"
   end
