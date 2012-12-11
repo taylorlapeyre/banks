@@ -151,7 +151,7 @@ class Bank
     when 3 then self.to_s
     when 4 then manually_remove_account
     when 5 then manually_save_bank_info
-    else puts "Invalid number!"; make_menu
+    else raise "Invalid number!"; make_menu
     end
   end
 
@@ -161,7 +161,7 @@ class Bank
     elsif account_type.downcase == "savings"
       @accounts[@accounts.size + 1] = SavingsAccount.new(the_holder, inital_balance)
     else
-      puts "The account type must be either 'checking' or 'savings'"
+      raise "The account type must be either 'checking' or 'savings'"
     end
   end
 
@@ -189,15 +189,19 @@ class Bank
   end
 
   def self.load_bank_from_file(file_name)
-    file = File.open(file_name, "r+")
-    bank_name = file.readline
-    bank = self.new(bank_name)
-    regex = /\[([A-Za-z]*)\] \w*: ([A-Za-z]*\s[A-Za-z]*) -- \w*: \$(\d*\.\d*)/
-    file.each do |line|
-      type, holder, balance = line.match(regex).captures
-      bank.add_account(type, holder, balance)
+    begin
+      file = File.open(file_name, "r+")
+      bank_name = file.readline
+      bank = self.new(bank_name)
+      regex = /\[([A-Za-z]*)\] \w*: ([A-Za-z]*\s[A-Za-z]*) -- \w*: \$(\d*\.\d*)/
+      file.each do |line|
+        type, holder, balance = line.match(regex).captures
+        bank.add_account(type, holder, balance)
+      end
+      bank
+    rescue
+      "Invalid save file!"
     end
-    bank
   end
 
   def to_s
