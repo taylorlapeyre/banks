@@ -22,7 +22,7 @@ class BankAccount
   end
 
   def to_s
-    "Holder: #@holder -- Balance: $#@balance."
+    "Holder: #@holder -- Balance: $#{@balance.to_f}."
   end
 end
 
@@ -57,7 +57,7 @@ class CheckingAccount < BankAccount
   end
 
   def to_s
-    "[Checking] Holder: #@holder -- Balance: $#@balance."
+    "[Checking] Holder: #@holder -- Balance: $#{@balance.to_f}."
   end
 end
 
@@ -89,7 +89,7 @@ class SavingsAccount < BankAccount
   end
 
   def to_s
-    "[Savings] Holder: #@holder -- Balance: $#@balance."
+    "[Savings] Holder: #@holder -- Balance: $#{@balance.to_f}."
   end
 end
 
