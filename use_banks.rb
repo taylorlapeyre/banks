@@ -10,4 +10,4 @@ chase.get_account_by_id(1).to_s
 
 chase.save_bank_info_to_file("chase.bank")
 
-`cat chase.bank`
+puts `cat chase.bank`
