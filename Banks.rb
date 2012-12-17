@@ -151,7 +151,7 @@ class Bank
     when 3 then self.to_s
     when 4 then manually_remove_account
     when 5 then manually_save_bank_info
-    else raise "Invalid number!"; make_menu
+    else raise "Invalid number!"; get_user_menu_choice
     end
   end
 
