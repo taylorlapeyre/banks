@@ -4,18 +4,17 @@ Within this program, you can make banks, savings accounts, checking accounts, sa
 
 Sample Usage:
 
-``` ruby
-require './Banks'
+``` python
+from banks import *
 
-chase = Bank.new("Chase Bank")
+chase = Bank("Chase Bank")
 
-chase.add_account("checking", "Taylor Lapeyre", "0")
-chase.add_account("savings", "Scrooge McDuck", "100")
+chase.add_account("Taylor Lapeyre", 0)
+chase.add_account("Scrooge McDuck", 300, "savings")
 
-chase.get_account_by_id(1).deposit(10)
-chase.get_account_by_id(1).to_s
+chase.find_account_by_id(1).deposit(10)
+str(chase.find_account_by_id(1))
 
-chase.save_bank_info_to_file("chase.bank")
+chase.save_bank_info_to_file("chase")
 
-`cat chase.bank`
 ```
