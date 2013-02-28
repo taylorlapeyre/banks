@@ -22,8 +22,8 @@ class BankAccount(object):
 
 
 class CheckingAccount(BankAccount):
-    FREE_TRANSACTIONS = 15
-    TRANSACTION_FEE   = 5.0
+    _free_transactions = 15
+    _transaction_fee   = 5.0
 
     def deposit(self, ammount):
         self.transaction_count += 1
@@ -40,8 +40,8 @@ class CheckingAccount(BankAccount):
     def deduct_fees(self):
         if date.today().day == 1:
             self.transaction_count = 1
-        if self.transaction_count > FREE_TRANSACTIONS:
-            self.balance -= TRANSACTION_FEE
+        if self.transaction_count > CheckingAccount._free_transactions:
+            self.balance -= CheckingAccount._transaction_fee
             self.transaction_count = 1
 
     def __str__(self):
@@ -51,7 +51,8 @@ class CheckingAccount(BankAccount):
 class SavingsAccount(BankAccount):
 
     def __init__(self, holder, balance):
-        super(holder, balance)
+        self.holder = holder
+        self.balance = balance
         self.interest_rate  = 0.6
         self.interest_added = False
 
