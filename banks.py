@@ -1,6 +1,7 @@
 from datetime import date
+import re
 
-class BankAccount(object):
+class BankAccount:
 
     def __init__(self, holder, balance):
         self.transaction_count = 0
@@ -75,7 +76,7 @@ class SavingsAccount(BankAccount):
         return("[Savings] Holder: {holder} -- ${balance}".format(holder=self.holder, balance=self.balance))
 
 
-class Bank(object):
+class Bank:
 
     def __init__(self, name):
         self. accounts = {}
@@ -107,6 +108,18 @@ class Bank(object):
     def save_bank_info_to_file(self, file_name):
         with open("{name}.bank".format(name=file_name), 'w+') as f:
             f.write(str(self))
+
+    def load_bank_from_file(self, file_name):
+        """ This method is incomplete """
+
+        with open(file_name, "r") as f:
+            bank_name = f.readline()
+            bank = Bank(bank_name)
+            regex = r"\[([A-Za-z]*)\] \w*: ([A-Za-z]*\s[A-Za-z]*) -- \w*: \$(\d*\.\d*)"
+
+            for line in f:
+                match = re.search(regex, line)
+
 
     def __str__(self):
         result = self.name + "\n"
