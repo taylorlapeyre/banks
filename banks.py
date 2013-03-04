@@ -120,7 +120,6 @@ class Bank:
             for line in f:
                 match = re.search(regex, line)
 
-
     def __str__(self):
         result = self.name + "\n"
         for account_id in self.accounts:
