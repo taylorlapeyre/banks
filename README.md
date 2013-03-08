@@ -1,21 +1,16 @@
-**This is a very minimal "Bank" library for ruby.**
+**This is a very minimal "Bank" library for Java.**
 
 Within this program, you can make banks, savings accounts, checking accounts, save your banks to files, load banks from files, and get information on pretty much anything.
 
 Sample Usage:
 
-``` ruby
-require './Banks'
+``` java
+Bank chase = new Bank("Chase Bank");
+chase.addAccount("checking", "Taylor Lapeyre", "0");
+chase.addAccount("savings", "Scrooge McDuck", "100");
 
-chase = Bank.new("Chase Bank")
+chase.findAccountById(1).deposit(10);
+chase.findAccountById(1).toString();
 
-chase.add_account("checking", "Taylor Lapeyre", "0")
-chase.add_account("savings", "Scrooge McDuck", "100")
-
-chase.get_account_by_id(1).deposit(10)
-chase.get_account_by_id(1).to_s
-
-chase.save_bank_info_to_file("chase.bank")
-
-`cat chase.bank`
+chase.save_bank_info_to_file("chase.bank");
 ```
